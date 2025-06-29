@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class Paginator {
   service = inject(PropertyService);
+  
   handleChangePage(event: PageEvent) {
     if (event.pageSize === 0) {
       return;

@@ -25,9 +25,11 @@ export class SearchBar implements OnInit {
   }
 
   private buildPredicates(value: string | null): Predicate[]{
-
+    // Si el valor es nulo o vacío, no se generan predicados
     if (!value) return []
+//Si hay un valor, se generan predicados para buscar en los campos 'titulo' y 'ciudad'.
 
+//TODO: Se pueden agregar mas campos de texto aqui para hacer la busqueda mas global.
     return [
       {
         value: value,

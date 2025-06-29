@@ -3,6 +3,16 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics.pairwise import cosine_similarity
 
 class Recommender:
+    '''
+    Recommender para inmuebles basado en similitud coseno.
+    Utiliza normalización de datos y one-hot encoding para manejar características numéricas y categóricas.
+    El DataFrame debe contener las columnas: id, precio, metros_cuadrados, ambientes, ciudad, tipo.
+    La ciudad tiene un peso de 2.0 y el tipo de inmueble un peso de 1.0 en la normalización.
+    La matriz de similitud se calcula una vez que se configuran los datos.
+    Se pueden obtener las n propiedades más similares a una propiedad dada por su ID.
+    La clase maneja errores si el ID de la propiedad no se encuentra en los datos.
+    
+    '''
     def __init__(self, df=None):
         """
         Inicializa el recomendador con un DataFrame opcional.

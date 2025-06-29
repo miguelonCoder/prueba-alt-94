@@ -21,7 +21,7 @@ export class PropertyService {
   idProperty$ = new BehaviorSubject<number | null>(null);
 
   // Este observable mapea el valor del buscador a los predicados y convierte el flujo a
-  // una peticion a la api, que devuelve el valor envuelto en un statusResponse
+  // una peticion para la api, que devuelve el valor envuelto en un statusResponse
   // para manejar el estado entre loading, success y error
   // TODO: Con mas tiempo podria implementar un mejor manejador de errores
   properties$: Observable<StatusResponse<Property[]>> = combineLatest([
@@ -53,13 +53,12 @@ export class PropertyService {
     this.pageSize$.next(10);
   }
 
-
+  //Esta es la función lanzada desde el componente de búsqueda
   updateList(predicates: Predicate[]) {
     this.predicates$.next(predicates);
   }
 
   updatePage(page: number) {
-    console.log(page)
     this.page$.next(page);
   }
 
@@ -69,9 +68,10 @@ export class PropertyService {
     this.idProperty$.next(id);
   }
 
+  // Este observable obtiene el detalle de la propiedad a partir del idProperty$
+  // y lo envuelve en un StatusResponse para manejar el estado de la petición
   profile$: Observable<StatusResponse<PropertyDetail>> = this.idProperty$.pipe(
     switchMap(id => {
-      console.log("aaaaaaaaaaa/a")
       if (id === null) {
         return of({
           status: Status.ERROR

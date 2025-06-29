@@ -12,8 +12,16 @@ from src.datasource.repository import Repository
 from src.datasource.json_datasource import JsonDatasource
 app = FastAPI()
 
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+  '''
+  Aqui se inicializa la fuente de los datos y se configura el sistema de recomendación.
+  Esto evita que por cada petición se vuelva a calcular la matriz de similitud (Nearest Neighbors).
+  
+  En un ambiente de producción, se considera mover esta logica a un servicio separado 
+  y manejar la matriz de pesos en Redis, actualizandose solo si se añaden nuevas propiedades.
+  '''
   path_data = os.path.join('static', 'properties.json')
   datasource = JsonDatasource(path_data)
   app.state.repository = Repository(datasource)
@@ -24,6 +32,8 @@ async def lifespan(app: FastAPI):
   
 
 app = FastAPI(lifespan=lifespan)
+
+#TODO: Con mayor tiempo se puede trasladar la lógica de cada petición a casos de uso separados
 
 app.add_middleware(
     CORSMiddleware,
@@ -77,6 +87,7 @@ def get_properties_paginated(request_data: PageRequest):
 
   df = None
   if not predicates:
+    # Si no hay predicados, paginamos sobre todos los datos
     df = app.state.repository.get_all()
   else:
     df = app.state.repository.get_filtered(predicates)
