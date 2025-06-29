@@ -1,0 +1,108 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+venv/
+env/
+ENV/
+.venv.bak/
+
+# pipenv
+Pipfile.lock
+
+# Poetry
+poetry.lock
+
+# VS Code
+.vscode/
+
+# MyPy / Pylint / Pyright
+.mypy_cache/
+.pyright/
+.pyre/
+.pytype/
+.pylint.d/
+
+# Pytest
+.cache/
+*.cover
+coverage.xml
+htmlcov/
+
+# Test results
+junit-*.xml
+
+# Logs
+*.log
+*.out
+
+# Local development databases
+*.sqlite3
+*.db
+
+# FastAPI static/uploads (si usas archivos temporales)
+uploads/
+static/uploads/
+
+# Uvicorn reload file (si usas reload with file watcher)
+.reload*
+
+# Docker
+*.pid
+docker-compose.override.yml
+.docker/
+
+# PyInstaller
+dist/
+build/
+*.spec
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Environments or secrets
+.env
+.env.*
+
+fasttext_es/
+static/
+
+# Angular build output
+/dist/
+/out-tsc/
+/.angular/
+/.angular-cache/
+
+# Node modules
+/node_modules/
+
+# Environment files
+/src/environments/environment*.ts
+
+# IDE files
+/.idea/
+/*.iml
+
+# Compiled files
+*.js
+*.map
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Coverage reports
+/coverage/
+
+# Misc
+.sass-cache/
+connect.lock

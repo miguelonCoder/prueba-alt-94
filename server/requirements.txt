@@ -1,0 +1,6 @@
+fastapi~=0.115.12
+uvicorn
+starlette~=0.46.2
+pip~=24.3.1
+scikit-learn~=1.7.0
+pandas~=2.3.0

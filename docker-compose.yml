@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./server:/app  # Para desarrollo (hot-reload)
+      # Excluir venv y otros archivos innecesarios
+      - /app/venv
+      - /app/.git
+    environment:
+      - PYTHONPATH=/app
+
+  frontend:
+    build:
+      context: ./client   # El contexto de la construcción es la carpeta 'client'
+      dockerfile: Dockerfile # El Dockerfile está dentro de la carpeta 'client'
+    ports:
+      - "8080:80"
+    environment:
+      - API_URL=http://server:8000  # URL del backend
+    depends_on:
+      - server  # Asegura que el backend esté listo antes de iniciar el frontend
+
+networks:
+  default:
+    driver: bridge
