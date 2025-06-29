@@ -1,0 +1,14 @@
+<mat-card class="card" appearance="outlined">
+  <img mat-card-image [src]="property().imagen" alt="Photo of a Shiba Inu">
+  <mat-card-content class="card-content">
+    <span class="card-price">
+      {{ property().precio | currency:'USD':'symbol':'1.0-0' }}
+    </span>
+    <p>
+      {{ property().titulo}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <a [routerLink]="['/propiedad', property().id]" matButton filled>Ver</a>
+  </mat-card-actions>
+</mat-card>

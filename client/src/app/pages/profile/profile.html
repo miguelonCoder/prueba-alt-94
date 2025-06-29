@@ -1,0 +1,34 @@
+@if(profile()?.status === statusOptions.LOADING){
+      <div class="status-container">
+        <mat-spinner />
+      </div>
+}
+
+@if(profile()?.status === statusOptions.SUCCESS && profile()?.data){
+<div class="profile-container">
+  <img [src]="profile()?.data?.profile?.imagen" alt="Departamento en La Plata">
+
+  <div class="profile-info">
+    <h2>{{profile()?.data?.profile?.titulo}}</h2>
+    <p>{{profile()?.data?.profile?.ciudad}} • {{profile()?.data?.profile?.tipo}}</p>
+    <div>
+      <span><strong>Precio:</strong> {{profile()?.data?.profile?.precio | currency }}</span>
+      <span><strong>Ambientes:</strong> {{profile()?.data?.profile?.ambientes}}</span>
+      <span><strong>Metros²:</strong> {{profile()?.data?.profile?.metros_cuadrados}}</span>
+    </div>
+  </div>
+
+  <hr>
+
+  <h3>Propiedades recomendadas</h3>
+  <div class="list-container">
+    @for (property of profile()?.data?.recommendation; track $index) {
+      <app-card [property]="property" />
+    }
+  </div>
+</div>
+}
+
+@if(profile()?.status === statusOptions.ERROR){
+
+}

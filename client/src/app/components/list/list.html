@@ -1,0 +1,34 @@
+<div>
+  <div>
+    <app-header-list />
+  </div>
+  <div class="list-container">
+    <!-- Si la peticion es correcta -->
+    @if (properties().status === statusOption.SUCCESS){
+      <!-- Si hay propiedades -->
+      @if (properties().data && properties().data!.length > 0) {
+        @for (property of properties().data; track $index) {
+          <app-card [property]="property" />
+        }
+        <!-- Si no hay propiedades -->
+      }@else {
+      <div class="no-properties">
+        <p class="error-message">No Se han encontrado predios.</p>
+      </div>
+      }
+    }
+    @if( properties().status === statusOption.LOADING) {
+      <div class="status-container">
+        <mat-spinner />
+      </div>
+    }
+    @if( properties().status === statusOption.ERROR) {
+      <div class="status-container">
+        <p>
+          Ha ocurrido un error al cargar los predios. Por favor, intente de nuevo más tarde.
+        </p>
+      </div>
+    }
+
+  </div>
+</div>

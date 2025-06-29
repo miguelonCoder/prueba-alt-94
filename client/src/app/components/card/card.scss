@@ -1,0 +1,22 @@
+.card {
+  border-radius: 8px;
+  color: rgb(101, 101, 101);
+
+  img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .card-content {
+    height: 100px;
+    padding: 1rem;
+
+    .card-price {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: rgb(37, 37, 37);
+    }
+  }
+}

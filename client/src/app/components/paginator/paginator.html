@@ -1,0 +1,10 @@
+<mat-paginator 
+  class="paginator" 
+  [length]="service.total$ | async"
+  [pageIndex]="(service.page$ | async) " 
+  [pageSizeOptions]="[10, 50, 100]" 
+  itemsPerPageLabel="Propiedades por página"
+  aria-label="Select page"
+  (page)="handleChangePage($event)"
+>
+</mat-paginator>
