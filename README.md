@@ -1,4 +1,4 @@
-#PRUEBA TÉCNICA ALT94
+# PRUEBA TÉCNICA ALT94
 
 - **Documentacion servidor:** http://18.116.147.172:8000
 - **Aplicación web:** http://18.116.147.172:8080/
@@ -55,13 +55,22 @@ Predicate:
 
 La lista de filtros es procesada para crear cada predicado mediante el patrón Factory, y por último se componen mediante los operadores 'or' o 'and'.
 
-Con este diseño los filtros pueden crecer indeterminadamente sin realizar ninguna modificacioen a la lógica de su aplicación, incluso se puede reutilizar sobre diferentes entidades distintas a 'Property'.
+Con este diseño los filtros pueden crecer indeterminadamente sin realizar ninguna modificacion en a la lógica de su aplicación, incluso se puede reutilizar sobre diferentes entidades distintas a 'Property'.
 
 ***Paginación***
 El servidor envía los resultados del filtrado de los datos mediante paginación, la cual se puede controlar mediante la aplicación del cliente.
 
 ***Documentación***
 La documentación de la API se puede encontrar en la ruta '/docs' del servidor, la cual se crea automaticamente  con OpenAPI y Swagger.
+
+***Módulos***
+Dentro de la carpeta src encontrara los módulos principales:
+
+- **datasource:** 
+  Contiene el repositorio junto con el adapter y el interface adapter de Datasource. Tambien tiene la clase Recommender que implementa el algoritmo de recomendación con Sckitlearn.
+
+- **filter_engine**
+  Contiene el sistema de predicados y su fabrica. Esta lógica es usada directamente en el repositorio.
 
 ### Cliente
 
@@ -82,31 +91,29 @@ Debido al tiempo de desarrollo limitado, se crearon los tests de las partes con 
 Para poner en marcha la aplicación, realice los siguientes pasos:
 1.
 Clone el repositorio:
-   
-   '''
-   git clone git@github.com:miguelonCoder/prueba-alt-94.git
-   '''
+
+```bash
+git clone git@github.com:miguelonCoder/prueba-alt-94.git
+```
 o con http:
 
-   '''
-   git clone https://github.com/miguelonCoder/prueba-alt-94.git
-   '''
+```bash
+git clone https://github.com/miguelonCoder/prueba-alt-94.git
+```
 2.
 Copie los datos de propiedades en el servidor dentro de la carpeta static:
 
-'''
+```bash
 cd prueba-alt-94
 mkdir server/static
 cp properties_mock_100_clean.json server/static/properties.json
-'''
-
+```
 3.
 levante los servicios con Docker Compose:
 
-'''
+```bash
 docker compose up -d
-'''
-
+```
 4.
 Acceda a las rutas:
 
