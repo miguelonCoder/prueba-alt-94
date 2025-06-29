@@ -45,13 +45,14 @@ Se diseñó un sistema de recomendación basado en el algorítmo **nearest neigh
 Se diseñó un sistema de filtrado totalmente escalable mediante la abstracción de operadores lógicos, usando los patrones de diseño Criteria y Factory. 
 
 El patrón Criteria fue usado para definir la familia de operadores de comparación 'greater_than', 'lower_than' y 'contains', así como los operadores de contatenación 'and' y 'or'. Entonces, para definir multiples filtros aplicados al tiempo, estos se envían en una lista del tipo:
-
-'''
-Predicate:
-  field: El campo a filtrar,
-  type: El operador de comparación ('greater_than', 'lower_than', 'contains')
-  value: El valor de comparación
-'''
+```python
+# Ejemplo de un filtro (Predicate) en Python:
+predicate = {
+   "field": "nombre_del_campo",          # El campo a filtrar
+   "type": "greater_than",               # Operador de comparación ('greater_than', 'lower_than', 'contains')
+   "value": 100                          # Valor de comparación
+}
+```
 
 La lista de filtros es procesada para crear cada predicado mediante el patrón Factory, y por último se componen mediante los operadores 'or' o 'and'.
 
